@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biyoves"
+version = "2.3.0"
+description = "Local app for preparing biometric and vesikalık photos."
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "gradio>=5,<6",
+    "numpy>=1.19.0",
+    "Pillow>=10,<13",
+    "mediapipe==0.10.35",
+    "opencv-contrib-python>=4.5.0",
+    "transformers>=5.14,<5.18",
+    "huggingface-hub>=1.24,<2",
+    "safetensors>=0.4,<1",
+    "timm>=1.0,<2",
+    "kornia>=0.8,<1",
+    "einops>=0.8,<1",
+    "torch>=2.13,<2.15",
+    "torchvision>=0.28,<0.30",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<10",
+    "build>=1,<2",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["biyoves"]
+
+[tool.pytest.ini_options]
+markers = [
+    "smoke: real model download, load, inference, and output validation",
+]

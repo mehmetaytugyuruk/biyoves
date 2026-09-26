@@ -1,0 +1,44 @@
+# Python environments, bytecode, and test/build output
+.venv/
+venv/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+build/
+dist/
+
+# Local configuration and temporary files
+.env
+.env.*
+*.log
+*.tmp
+*.temp
+*.swp
+*.part
+.DS_Store
+tmp/
+temp/
+.tmp/
+gradio_cached_examples/
+
+# Downloaded model assets and caches
+.cache/
+models/
+*.safetensors
+*.task
+*.pt
+*.pth
+*.bin
+*.onnx
+
+# Local datasets and generated outputs
+/data/
+/examples/
+.evaluation-inputs/
+.evaluation/
+images/
+output/
+results/
+*.zip

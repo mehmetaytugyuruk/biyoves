@@ -1,0 +1,29 @@
+name: Real model smoke test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      BIYOVES_CACHE_DIR: ~/.cache/biyoves
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Cache verified model assets
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/biyoves
+          key: biyoves-models-${{ runner.os }}-${{ hashFiles('pyproject.toml', 'src/biyoves/runtime.py') }}
+      - name: Install package and development dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Run real model smoke test
+        run: python -m pytest -m smoke tests/test_smoke.py -q
