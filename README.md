@@ -12,7 +12,9 @@ or a 10 × 15 cm print sheet.
 
 ## Install and run
 
-Clone the repository, then run the launcher. On first launch it creates an isolated `.venv`, installs dependencies, and starts the local server. Run the same command again to start BiyoVes later; no environment activation is needed.
+Download the repository as a ZIP from GitHub (**Code → Download ZIP**) and extract it, or clone it with Git if you already use Git. Open a terminal in the extracted `biyoves` folder, then run the launcher. On first launch it creates an isolated `.venv`, installs dependencies, and starts the local server. Run the same command again to start BiyoVes later; no environment activation is needed.
+
+Git is optional. Python itself must be installed separately; BiyoVes supports Python 3.10–3.13. On Windows, install Python 3.13 (64-bit) and use the version-specific command below so another installed Python version is not selected by mistake.
 
 ```bash
 git clone https://github.com/mehmetaytugyuruk/biyoves.git
@@ -28,7 +30,7 @@ python3 start.py
 On Windows:
 
 ```powershell
-py -3 start.py
+py -3.13 start.py
 ```
 
 Open <http://127.0.0.1:7860> in your browser. Model files are downloaded and verified when the first photo is processed, then reused from the local cache.
@@ -41,7 +43,7 @@ BIYOVES_PORT=7861 python3 start.py
 
 ```powershell
 $env:BIYOVES_PORT = "7861"
-py -3 start.py
+py -3.13 start.py
 ```
 
 ## Photo formats
