@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import errno
+import http.client
 import logging
 import mimetypes
 import os
@@ -16,6 +18,7 @@ from typing import Any, Callable
 
 from flask import Flask, jsonify, request, send_file, send_from_directory
 from werkzeug.exceptions import RequestEntityTooLarge
+from werkzeug.serving import make_server
 from werkzeug.utils import secure_filename
 
 from .errors import InputProcessingError, ModelAssetsError, RuntimeErrorBase
@@ -33,6 +36,7 @@ LOGGER = logging.getLogger(__name__)
 OUTPUT_DPI = 600
 HOST = "127.0.0.1"
 PORT = int(os.environ.get("BIYOVES_PORT", "7860"))
+PORT_ATTEMPTS = 100
 MAX_UPLOAD_BYTES = 25 * 1024 * 1024
 IMAGE_EXTENSIONS = {".bmp", ".jpeg", ".jpg", ".png", ".tif", ".tiff", ".webp"}
 VARIANTS = tuple(f"hair_{size}" for size in HAIR_INPUT_SIZES)
@@ -268,11 +272,54 @@ def create_app() -> Flask:
     return app
 
 
-def main() -> None:
-    url = f"http://{HOST}:{PORT}"
+def _is_biyoves_running(port: int) -> bool:
+    connection = http.client.HTTPConnection(HOST, port, timeout=1)
+    try:
+        connection.request("GET", "/")
+        response = connection.getresponse()
+        return response.status == 200 and b"<title>BiyoVes</title>" in response.read(4096)
+    except OSError:
+        return False
+    finally:
+        connection.close()
+
+
+def _open_browser(url: str) -> None:
     if os.environ.get("BIYOVES_NO_BROWSER") != "1":
         threading.Timer(0.8, lambda: webbrowser.open(url)).start()
-    create_app().run(host=HOST, port=PORT, debug=False, threaded=True, use_reloader=False)
+
+
+def main() -> None:
+    app = create_app()
+    server = None
+    last_port = min(PORT + PORT_ATTEMPTS, 65536)
+    for port in range(PORT, last_port):
+        try:
+            server = make_server(HOST, port, app, threaded=True)
+            break
+        except OSError as exc:
+            if exc.errno != errno.EADDRINUSE and getattr(exc, "winerror", None) != 10048:
+                raise
+            if _is_biyoves_running(port):
+                url = f"http://{HOST}:{port}"
+                print(f"BiyoVes is already running at {url}", flush=True)
+                _open_browser(url)
+                return
+
+    if server is None:
+        raise SystemExit(f"No free port found between {PORT} and {last_port - 1}.")
+
+    url = f"http://{HOST}:{server.server_port}"
+    if server.server_port != PORT:
+        print(f"Port {PORT} is in use; using {server.server_port} instead.", flush=True)
+    print(f"BiyoVes is running at {url}", flush=True)
+    _open_browser(url)
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\nBiyoVes stopped.", flush=True)
+    finally:
+        server.server_close()
 
 
 if __name__ == "__main__":

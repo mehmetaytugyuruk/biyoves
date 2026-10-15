@@ -41,18 +41,7 @@ On Windows:
 py -3.13 start.py
 ```
 
-Open <http://127.0.0.1:7860> in your browser. Model files are downloaded and verified when the first photo is processed, then reused from the local cache.
-
-If port 7860 is already in use, choose another port when starting the app:
-
-```bash
-BIYOVES_PORT=7861 python3 start.py
-```
-
-```powershell
-$env:BIYOVES_PORT = "7861"
-py -3.13 start.py
-```
+The app opens in your browser, usually at <http://127.0.0.1:7860>. If BiyoVes is already running, the launcher opens that instance instead of starting a duplicate. If another app is using the port, BiyoVes automatically tries the following ports. It never closes another app to free a port. Ports are released when their server stops, so they do not accumulate. Model files are downloaded and verified when the first photo is processed, then reused from the local cache.
 
 ## Photo formats
 
