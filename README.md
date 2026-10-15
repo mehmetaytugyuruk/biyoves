@@ -16,6 +16,14 @@ Download the repository as a ZIP from GitHub (**Code → Download ZIP**) and ext
 
 Git is optional. Python itself must be installed separately; BiyoVes supports Python 3.10–3.13. On Windows, install Python 3.13 (64-bit) and use the version-specific command below so another installed Python version is not selected by mistake.
 
+On Windows 10/11 with WinGet available, Python can be installed from PowerShell without manually downloading the installer:
+
+```powershell
+winget install --id Python.Python.3.13 --exact --accept-source-agreements --accept-package-agreements
+```
+
+Reopen the terminal after installation, then run BiyoVes with `py -3.13 start.py`. WinGet may still display an installation or confirmation prompt. If `winget` is unavailable, install Python 3.13 (64-bit) from [python.org](https://www.python.org/downloads/release/python-31316/).
+
 ```bash
 git clone https://github.com/mehmetaytugyuruk/biyoves.git
 cd biyoves
