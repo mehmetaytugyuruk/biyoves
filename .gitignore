@@ -1,0 +1,47 @@
+# Python environments and generated files
+.venv/
+venv/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+
+# Local configuration and temporary files
+.env
+.env.*
+*.log
+*.tmp
+*.temp
+*.swp
+*.part
+.DS_Store
+tmp/
+temp/
+.tmp/
+
+# Downloaded model assets and caches
+.cache/
+models/
+*.safetensors
+*.task
+*.pt
+*.pth
+*.bin
+*.onnx
+
+# Local datasets and generated outputs
+/data/
+/examples/
+/reference/
+/reference_processed/
+.evaluation-inputs/
+.evaluation/
+images/
+output/
+results/
+*.zip
