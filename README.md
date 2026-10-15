@@ -12,7 +12,7 @@ or a 10 × 15 cm print sheet.
 
 ## Install and run
 
-Download the repository as a ZIP from GitHub (**Code → Download ZIP**) and extract it, or clone it with Git if you already use Git. Open a terminal in the extracted `biyoves` folder, then run the launcher. On first launch it creates an isolated `.venv`, installs dependencies, and starts the local server. Run the same command again to start BiyoVes later; no environment activation is needed.
+Download the repository as a ZIP from GitHub (**Code → Download ZIP**) and extract it. GitHub names the extracted folder `biyoves-main`; open a terminal in that folder before running the launcher. If you already use Git, clone the repository and enter its `biyoves` folder with the commands below. On first launch the app creates an isolated `.venv`, installs dependencies, and starts the local server. Run the same command again to start BiyoVes later; no environment activation is needed.
 
 Git is optional. Python itself must be installed separately; BiyoVes supports Python 3.10–3.13. On Windows, install Python 3.13 (64-bit) and use the version-specific command below so another installed Python version is not selected by mistake.
 

@@ -28,7 +28,7 @@ h1 { margin: 0; font-size: clamp(2.35rem, 5vw, 4.5rem); letter-spacing: -.07em; 
 .mode-card { margin-top: clamp(14px, 2svh, 28px); padding: clamp(14px, 2svh, 24px); border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
 .mode-card-header { display: flex; align-items: center; justify-content: space-between; }
 .mode-card-note { margin: 8px 0 0; color: var(--muted); font-size: .85rem; }
-.mode-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: clamp(10px, 1.7svh, 18px); }
+.mode-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: clamp(10px, 1.7svh, 18px); }
 .mode-option { display: flex; align-items: center; gap: 12px; min-height: clamp(54px, 7svh, 68px); padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface-2); cursor: pointer; transition: border-color .2s ease, background .2s ease, opacity .2s ease; }
 .mode-option:hover:not(.is-disabled), .mode-option.is-selected { border-color: #aaa; background: #181818; }
 .mode-option.is-disabled { cursor: not-allowed; opacity: .45; }
@@ -83,6 +83,9 @@ h2 { margin: 8px 0 0; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -.04e
 .print-download-button { border-color: var(--line); color: var(--muted); }
 .download-button.is-disabled { cursor: not-allowed; opacity: .35; pointer-events: none; }
 .is-hidden { display: none !important; }
+@media (max-width: 640px) {
+  .mode-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (prefers-reduced-motion: reduce) {
   .clear-button, .clear-button svg { transition: none; }
   .progress-bar.is-active::after { animation: none; }
