@@ -269,7 +269,6 @@ def _face_geometry(points: np.ndarray, width: int, height: int) -> Dict[str, Any
 
 
 def _select_foreground_component(
-    labels: np.ndarray,
     stats: np.ndarray,
 ) -> int:
     component_count = len(stats) - 1
@@ -326,7 +325,7 @@ def _head_region(alpha: np.ndarray, geometry: Dict[str, Any]) -> Dict[str, Any]:
     count, labels, stats, _ = cv2.connectedComponentsWithStats(binary, connectivity=8)
     if count <= 1:
         raise InputProcessingError("BiRefNet mask contains no foreground component")
-    selected_label = _select_foreground_component(labels, stats)
+    selected_label = _select_foreground_component(stats)
     component = labels == selected_label
     ys, xs = np.where(component)
     if len(xs) == 0:
