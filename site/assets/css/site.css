@@ -1,0 +1,471 @@
+:root {
+  color-scheme: light;
+  --ink: #363636;
+  --muted: #656565;
+  --link: #0878bd;
+  --surface: #f5f5f5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 1rem/1.65 "Noto Sans", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  text-underline-offset: .2em;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p,
+h1,
+h2,
+.publication-authors,
+.publication-affiliations {
+  overflow-wrap: break-word;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+h1,
+h2 {
+  font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+}
+
+:focus-visible {
+  outline: 3px solid var(--link);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -5rem;
+  left: 1rem;
+  z-index: 1;
+  padding: .6rem 1rem;
+  color: var(--ink);
+  background: #fff;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.container {
+  width: min(calc(100% - 3rem), 1000px);
+  margin-inline: auto;
+}
+
+.container-narrow {
+  max-width: 800px;
+}
+
+/* The figure fills spare screen space; the header can grow without clipping. */
+.publication-hero {
+  display: grid;
+  grid-template-rows: auto minmax(10rem, 1fr);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 3.5rem 0 .65rem;
+  background: #fff;
+}
+
+.publication-header {
+  text-align: center;
+}
+
+h1 {
+  margin: 0 auto 1.5rem;
+  font-size: clamp(2.05rem, 3.3vw, 2.5rem);
+  line-height: 1.04;
+  letter-spacing: -.06em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.publication-authors {
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+.author {
+  display: inline-block;
+  color: var(--link);
+}
+
+sup {
+  font-size: .7em;
+}
+
+.publication-affiliations {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .25rem 1.25rem;
+  margin-top: .3rem;
+  font-size: clamp(.9rem, 1.15vw, 1.15rem);
+}
+
+.publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem;
+  margin-top: 1.5rem;
+}
+
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 44px;
+  padding: .5rem 1.1rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: #fff;
+  background: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.resource-link:hover {
+  color: #fff;
+  background: #202020;
+  text-decoration: none;
+}
+
+.resource-link svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+}
+
+.huggingface-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.figure-section {
+  display: grid;
+  width: min(calc(100% - 3rem), 1120px);
+  min-height: 0;
+  padding-top: 1.25rem;
+}
+
+.figure-section figure {
+  position: relative;
+  min-height: 0;
+  margin: 0;
+}
+
+.figure-section img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.section {
+  padding-block: 3rem;
+}
+
+.shaded {
+  background: var(--surface);
+}
+
+.section h2 {
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.section p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.section p.abstract-text {
+  color: #555;
+  text-align: justify;
+}
+
+@media (max-width: 760px) {
+  .container {
+    width: min(calc(100% - 2rem), 1000px);
+  }
+
+  .publication-hero {
+    padding: 2.5rem 0 .4rem;
+  }
+
+  .publication-header,
+  .figure-section {
+    width: calc(100% - 1.5rem);
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 7.2vw, 2.3rem);
+  }
+
+  .publication-authors {
+    font-size: 1.2rem;
+  }
+
+  .publication-affiliations {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding-block: 2.5rem;
+  }
+
+  .section h2 {
+    font-size: 1.75rem;
+  }
+
+  .section p.abstract-text {
+    text-align: left;
+  }
+}
+
+/* BiyoVes-specific content components. */
+.biyoves-page {
+  --rule: #dedede;
+}
+
+.lead {
+  font-size: 1.05rem;
+}
+
+.section-intro {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.facts > div {
+  display: flex;
+  min-height: 104px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0.25rem;
+  text-align: center;
+}
+
+.facts strong {
+  color: var(--ink);
+  font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+
+.facts span {
+  margin-top: 0.42rem;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.45;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin-top: 1.8rem;
+}
+
+.support-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.support-table th,
+.support-table td {
+  padding: 0.85rem 0.75rem;
+  border-top: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.support-table thead th {
+  color: var(--ink);
+  font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.support-table tbody tr:last-child th,
+.support-table tbody tr:last-child td {
+  border-bottom: 1px solid var(--rule);
+}
+
+.support-table tbody th {
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.gallery {
+  margin: 2rem 0 0;
+}
+
+.gallery a {
+  display: block;
+  color: inherit;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  background: #fff;
+}
+
+.gallery figcaption {
+  max-width: 800px;
+  margin: 0.8rem auto 0;
+  color: var(--muted);
+  font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.centered {
+  margin-top: 1.4rem;
+  text-align: center;
+}
+
+.text-link {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.section p.platform-label {
+  margin: 1.25rem 0 0.5rem;
+  color: var(--ink);
+  font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.biyoves-page pre {
+  overflow-x: auto;
+  padding: 1rem 1.1rem;
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+  color: #292929;
+  background: #f7f7f7;
+  font-size: 0.87rem;
+  line-height: 1.55;
+  tab-size: 4;
+}
+
+.biyoves-page code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.start-note {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.start-note code {
+  padding: 0.1em 0.34em;
+  border-radius: 0.2em;
+  background: #eee;
+  font-size: 0.88em;
+}
+
+.site-footer {
+  padding: 2rem 0 2.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  background: #fff;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.3rem;
+  margin-top: 0.75rem;
+}
+
+.footer-links a {
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .facts > div:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .support-table {
+    min-width: 680px;
+  }
+}
+
+@media (max-width: 520px) {
+  .section-intro {
+    font-size: 0.98rem;
+  }
+
+  .facts strong {
+    font-size: 1.15rem;
+  }
+
+  .biyoves-page pre {
+    padding: 0.85rem;
+    font-size: 0.77rem;
+  }
+}

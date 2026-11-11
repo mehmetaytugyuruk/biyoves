@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>BiyoVes</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <h1>BiyoVes</h1>
+      </header>
+
+      <section class="mode-card" aria-label="Çıktı türü">
+        <div class="mode-card-header">
+          <div>
+            <span class="section-label">Çıktı türü</span>
+            <p class="mode-card-note">Fotoğrafın kullanılacağı ölçüyü seçin.</p>
+          </div>
+        </div>
+        <div class="mode-options" role="radiogroup" aria-label="Çıktı türü seçimi">
+          <label class="mode-option is-selected" for="preset-biometric">
+            <input id="preset-biometric" type="radio" name="preset" value="biometric" checked />
+            <span class="mode-option-copy">
+              <strong>Biyometrik</strong>
+              <small>50 × 60 milimetre</small>
+            </span>
+          </label>
+          <label class="mode-option" for="preset-vesikalik">
+            <input id="preset-vesikalik" type="radio" name="preset" value="vesikalik" />
+            <span class="mode-option-copy">
+              <strong>Vesikalık</strong>
+              <small>45 × 60 milimetre</small>
+            </span>
+          </label>
+          <label class="mode-option" for="preset-usa-visa">
+            <input id="preset-usa-visa" type="radio" name="preset" value="usa_visa" />
+            <span class="mode-option-copy">
+              <strong>USA vizesi</strong>
+              <small>50 × 50 milimetre</small>
+            </span>
+          </label>
+          <label class="mode-option" for="preset-schengen-visa">
+            <input id="preset-schengen-visa" type="radio" name="preset" value="schengen_visa" />
+            <span class="mode-option-copy">
+              <strong>Schengen vizesi</strong>
+              <small>35 × 45 milimetre</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="photo-card" id="photo-card" aria-label="Fotoğraf">
+        <div class="photo-card-header">
+          <span class="section-label">Fotoğraf</span>
+          <div class="clear-button-slot">
+            <button class="clear-button is-hidden" id="clear-button" type="button" aria-label="Fotoğrafı kaldır" title="Fotoğrafı kaldır">
+              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                <path d="m6 6 8 8M14 6l-8 8" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Fotoğraf seç veya sürükle bırak">
+          <input id="file-input" type="file" accept="image/bmp,image/jpeg,image/png,image/tiff,image/webp" hidden />
+          <div class="upload-icon" aria-hidden="true">↑</div>
+          <p class="drop-title">Fotoğrafı buraya bırak</p>
+          <p class="drop-separator">veya</p>
+          <button class="choose-button" id="choose-button" type="button">Fotoğraf seç</button>
+          <p class="format-note">JPG, PNG, WEBP veya TIFF</p>
+        </div>
+        <div class="preview is-hidden" id="preview">
+          <img id="source-image" alt="Seçilen fotoğrafın önizlemesi" />
+        </div>
+      </section>
+
+      <section class="action-row" aria-label="İşlem durumu">
+        <button class="primary-button" id="start-button" type="button" disabled>İşlemeyi başlat</button>
+        <div class="status-card" id="status-card">
+          <div class="status-topline">
+            <span id="status-message" role="status" aria-live="polite">Fotoğraf yükleyin.</span>
+          </div>
+          <div class="progress-track" id="progress-track" role="progressbar" aria-label="Fotoğraf işleme ilerlemesi" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-busy="false">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="results-section is-hidden" id="results-section" aria-live="polite">
+        <div class="results-header">
+          <div>
+            <p class="eyebrow">RESULTS</p>
+            <h2>Hazır çıktılar</h2>
+          </div>
+        </div>
+        <div class="result-grid">
+          <article class="result-card">
+            <div class="result-card-header"><h3>Düşük detay</h3></div>
+            <div class="result-image-frame"><img id="result-hair_256" alt="Düşük detay çıktısı" /></div>
+            <a class="download-button is-disabled" id="download-hair_256" aria-disabled="true">PNG indir</a>
+            <a class="download-button print-download-button is-disabled" id="print-download-hair_256" aria-disabled="true">10×15 baskı indir</a>
+          </article>
+          <article class="result-card">
+            <div class="result-card-header"><h3>Orta detay</h3></div>
+            <div class="result-image-frame"><img id="result-hair_416" alt="Orta detay çıktısı" /></div>
+            <a class="download-button is-disabled" id="download-hair_416" aria-disabled="true">PNG indir</a>
+            <a class="download-button print-download-button is-disabled" id="print-download-hair_416" aria-disabled="true">10×15 baskı indir</a>
+          </article>
+          <article class="result-card">
+            <div class="result-card-header"><h3>Yüksek detay</h3></div>
+            <div class="result-image-frame"><img id="result-hair_608" alt="Yüksek detay çıktısı" /></div>
+            <a class="download-button is-disabled" id="download-hair_608" aria-disabled="true">PNG indir</a>
+            <a class="download-button print-download-button is-disabled" id="print-download-hair_608" aria-disabled="true">10×15 baskı indir</a>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
